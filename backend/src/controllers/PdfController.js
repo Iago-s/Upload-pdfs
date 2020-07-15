@@ -1,5 +1,7 @@
 const Pdf = require('../models/Pdf');
 
+const Op = require('sequelize').Op;
+
 module.exports = {
   async listAll(request, response) {
     const pdfs = await Pdf.findAll();
@@ -9,11 +11,11 @@ module.exports = {
 
   async searchPdf(request, response) {
     const { title, author } = request.body;
+    console.log(title, author);
 
-    const pdf = Pdf.findOne({
-      where: {
-        title,
-        author
+    const pdf = await Pdf.findAll({
+      where: {    
+        [Op.or]: [ { title }, { author } ]
       }
     });
 

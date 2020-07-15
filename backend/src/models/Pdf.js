@@ -18,17 +18,21 @@ class Pdf extends Model {
       url: DataTypes.STRING,
     }, {
       hooks: {
-         beforeSave: (pdf) => {
-           pdf.url = `${process.env.PDF_URL}/files/${pdf.key}`
-         },
-         beforeDestroy: (pdf) => {
+        beforeSave: (pdf) => {
+          if(process.env.STORAGE_TYPE !== 's3') {
+            pdf.url = `${process.env.PDF_URL}/files/${pdf.key}`
+          }
+
+          pdf.url = `https://upload.s3-sa-east-1.amazonaws.com/${pdf.key}`
+        },
+        beforeDestroy: (pdf) => {
           if(process.env.STORAGE_TYPE === 's3') {
             return s3.deleteObject({
               Bucket: process.env.BUCKET_NAME,
               Key: pdf.key,
             }).promise();
           } else {
-            return promisify(fs.unlink)(path.resolve(__dirname, '..', '..', 'tmp', 'uploads', img.key));
+            return promisify(fs.unlink)(path.resolve(__dirname, '..', '..', 'tmp', 'uploads', pdf.key));
           }
         }
       },

@@ -1,9 +1,14 @@
-const { response } = require('express');
+const express = require('express');
 
-const routes = require('express').Router();
+const multer = require('multer');
+const multerConfig = require('./config/multer');
 
-routes.get('/', (request, response) => {
-  response.send('<h1>Welcome page</h1>');
-});
+const PdfController = require('./controllers/PdfController');
+
+const routes = express.Router();
+
+routes.get('/', PdfController.listAll);
+routes.post('/', PdfController.searchPdf);
+routes.post('/', multer(multerConfig).single('pdf'), PdfController.upload);
 
 module.exports = routes;

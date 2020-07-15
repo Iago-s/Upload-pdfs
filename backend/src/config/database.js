@@ -1,6 +1,6 @@
 module.exports = {
   username: 'root',
-  password: 2307,
+  password: '2307',
   database: 'uploadpdfs',
   host: 'localhost',
   dialect: 'mysql',

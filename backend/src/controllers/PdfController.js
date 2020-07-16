@@ -10,12 +10,12 @@ module.exports = {
   },
 
   async searchPdf(request, response) {
-    const { title, author } = request.body;
-    console.log(title, author);
+    const { title} = request.body;
+    console.log(title);
 
     const pdf = await Pdf.findAll({
       where: {    
-        [Op.or]: [ { title }, { author } ]
+        title
       }
     });
 

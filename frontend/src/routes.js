@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import WelcomePage from './pages/WelcomePage';
+import WelcomePage from './pages';
 
 function Routes() {
   return (

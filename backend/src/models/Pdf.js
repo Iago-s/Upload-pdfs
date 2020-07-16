@@ -22,8 +22,8 @@ class Pdf extends Model {
           if(process.env.STORAGE_TYPE !== 's3') {
             pdf.url = `${process.env.PDF_URL}/files/${pdf.key}`
           }
-
-          pdf.url = `https://upload.s3-sa-east-1.amazonaws.com/${pdf.key}`
+          
+          pdf.url = `https://uploadpdfs.s3-sa-east-1.amazonaws.com/${pdf.key}`;
         },
         beforeDestroy: (pdf) => {
           if(process.env.STORAGE_TYPE === 's3') {

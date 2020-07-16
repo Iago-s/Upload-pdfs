@@ -37,7 +37,7 @@ module.exports = {
       author, 
       size, 
       key, 
-      url 
+      url
     }); 
 
     console.log('Body', request.body);

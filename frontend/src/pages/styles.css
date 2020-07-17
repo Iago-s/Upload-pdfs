@@ -9,3 +9,98 @@
   display: flex;
   align-items: center;
 }
+
+.container header input {
+  height: 35px;
+  color: #333;
+  text-align: center;
+  border: 1px solid #dcdce6;
+  padding: 0 50px;
+  border-radius: 8px;
+  margin: 10px auto;
+}
+
+hr {
+  margin-top: 50px;
+  margin-bottom: 30px;
+  border: 0.9px solid red;
+}
+
+.container ul form {
+  display: grid;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+ul form input {
+  width: 100%;
+  margin: 0 auto;
+  height: 30px;
+  color: #333;
+  border: 1px solid #dcdce6;
+  border-radius: 8px;
+  padding: 0 24px;
+}
+
+form {
+  overflow: hidden;
+  position: relative;
+}
+
+form input.upload {
+  right: 0;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0); 
+}
+
+ul form button {
+  border: none;
+  background-color: transparent;
+}
+
+ul form button:hover {
+  background-color: #dcdce6;
+}
+
+.container h1 {
+  margin: 0 auto;
+}
+
+.container ul {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 24px;
+  list-style: none;
+}
+
+.container ul li {
+  background: #FFF;
+  padding: 24px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.container ul li p {
+  font-size: 14px; 
+}
+
+.container ul li p span {
+  
+  font-weight: bold;
+}
+
+.container ul li a {
+  position: absolute;
+  text-decoration: none;
+  right: 24px;
+  top: 57px;
+  font-weight: bold;
+  color: red;
+}
+
+.container ul li a:hover {
+  opacity: 0.8;
+}

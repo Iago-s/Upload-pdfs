@@ -9,25 +9,6 @@ module.exports = {
     return response.json(pdfs);
   },
 
-  async searchPdf(request, response) {
-    const { title} = request.body;
-    console.log(title);
-
-    const pdf = await Pdf.findAll({
-      where: {    
-        title
-      }
-    });
-
-    if(!pdf) {
-      response.json({
-        message: 'Pdf not found.'
-      });
-    }
-
-    return response.json(pdf);
-  },
-
   async upload(request, response) {
     const { title, author } = request.body;
     const { size, key, url } = request.file;

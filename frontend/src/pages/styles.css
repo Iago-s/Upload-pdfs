@@ -5,21 +5,6 @@
   margin: 32px auto;
 }
 
-.container header {
-  display: flex;
-  align-items: center;
-}
-
-.container header input {
-  height: 35px;
-  color: #333;
-  text-align: center;
-  border: 1px solid #dcdce6;
-  padding: 0 50px;
-  border-radius: 8px;
-  margin: 10px auto;
-}
-
 hr {
   margin-top: 50px;
   margin-bottom: 30px;
@@ -88,7 +73,6 @@ ul form button:hover {
 }
 
 .container ul li p span {
-  
   font-weight: bold;
 }
 

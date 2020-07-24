@@ -8,7 +8,6 @@ const PdfController = require('./controllers/PdfController');
 const routes = express.Router();
 
 routes.get('/', PdfController.listAll);
-routes.post('/search', PdfController.searchPdf);
 routes.post('/', multer(multerConfig).single('pdf'), PdfController.upload);
 
 module.exports = routes;

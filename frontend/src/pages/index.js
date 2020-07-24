@@ -11,6 +11,8 @@ import './styles.css'
 function WelcomePage() {
   const [pdfs, setPdfs] = useState([]);
 
+  const [pdfName, setPdfName] = useState('');
+
   const [title, setTitle] = useState([]);
   const [author, setAuthor] = useState('');
 
@@ -30,7 +32,7 @@ function WelcomePage() {
       .then((response) => {
         setPdfs(response.data)
       });
-  },[pdfs.id]);
+  }, [pdfs.id]);
 
   async function uploadPdf(e) {
     e.preventDefault();
@@ -45,13 +47,10 @@ function WelcomePage() {
     try {
       const response = await api.post('http://localhost:3333/', data);
 
-      console.log(response);
-      
-      pdfs.push(response.data);
+      setPdfs(pdfs.filter(pdf => pdf.id !== 0));
 
-      console.log('pdfs', pdfs);
       alert('Pdf compartilhado com sucesso');
-    } catch(err) {
+    } catch (err) {
       alert('Erro ao fazer o upload, tente novamente.');
     }
   }
@@ -59,60 +58,53 @@ function WelcomePage() {
   return (
     <div className="container">
 
-      <header>
-        <input 
-          type="search"
-          placeholder="Search pdf"
-        />  
-      </header>
-
-      <hr></hr>
-
       <ul>
         <form onSubmit={uploadPdf}>
-          <input 
+          <input
             placeholder="Titulo do pdf"
             value={title}
             onChange={e => setTitle(e.target.value)}
           />
-          <input 
+          <input
             placeholder="Author"
             value={author}
             onChange={e => setAuthor(e.target.value)}
           />
-          
-          <input 
+
+          <input
             name="pdf"
             type="file"
             className="upload"
             onChange={e => setPdf(e.target.files[0])}
           />
-          <FaFilePdf 
-            size={20} 
+          <FaFilePdf
+            size={20}
             style={styleIcon}
-          /> 
-          <button type="submit"> 
+          />
+          <button type="submit">
             <FiUpload
               size={20}
               color="red"
-            /> 
+            />
           </button>
         </form>
 
         {
-          pdfs.length === 0 ? 
+          pdfs.length === 0 ?
             <h1>Não tem nenhum pdf disponivel</h1> :
-            pdfs.map(pdf => (
-              <li key={pdf.id}>
-                <p><span>Titulo: </span>{pdf.title}</p>
-                <p><span>Autor: </span>{pdf.author}</p>
-                <a 
-                  href={pdf.url} 
-                  target="_blank" >
+            pdfs.map(pdf => {
+              return (
+                <li key={pdf.id}>
+                  <p><span>Titulo: </span>{pdf.title}</p>
+                  <p><span>Autor: </span>{pdf.author}</p>
+                  <a
+                    href={pdf.url}
+                    target="_blank" >
                     <FiDownload size={20} />
-                </a>
-              </li> 
-            ))
+                  </a>
+                </li>
+              );
+            })
         }
       </ul>
     </div>
